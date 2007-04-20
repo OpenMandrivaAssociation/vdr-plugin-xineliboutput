@@ -3,8 +3,8 @@
 %define name	vdr-plugin-%plugin
 %define version	1.0.0
 %define snapshot 0
-%define prever	pre7
-%define rel	4
+%define prever	rc1
+%define rel	2
 
 %if %snapshot
 %define release	%mkrel 2.%snapshot.%rel
@@ -25,14 +25,14 @@ Version:	%version
 Release:	%release
 Group:		Video
 License:	GPL
-URL:		http://users.tkk.fi/~phintuka/vdr/vdr-xineliboutput/
+URL:		http://sourceforge.net/projects/xineliboutput/
 %if %snapshot
 Source:		vdr-%plugin-%snapshot.tar.bz2
 %else
 %if %prever
-Source:		http://users.tkk.fi/~phintuka/vdr/vdr-xineliboutput/vdr-%plugin-%{version}%{prever}.tar.bz2
+Source:		http://prdownloads.sourceforge.net/xineliboutput/vdr-%plugin-%{version}%{prever}.tar.bz2
 %else
-Source:		http://users.tkk.fi/~phintuka/vdr/vdr-xineliboutput/vdr-%plugin-%version.tar.bz2
+Source:		http://prdownloads.sourceforge.net/xineliboutput/vdr-%plugin-%version.tar.bz2
 %endif
 %endif
 BuildRoot:	%{_tmppath}/%{name}-buildroot
@@ -195,9 +195,8 @@ var=AUDIO
 param=--audio=AUDIO
 # Video driver
 # Supported values:
-# for sxfe: auto, x11, xshm, xv, xvmc, xxmc, vidix, none
-# for fbfe: auto, fb, DirectFB, vidixfb, none
-var=VIDEO
+# for sxfe: auto, x11, xshm, xv, xvmc, xxmc, vidix, sdl, opengl, none
+# for fbfe: auto, fb, DirectFB, vidixfb, sdl, dxr3, aadxr3, nonevar=VIDEO
 param=--video=VIDEO
 # Fullscreen mode (X11)
 var=FULLSCREEN
@@ -230,7 +229,7 @@ mkdir xine-plugins
 
 %build
 
-%vdr_plugin_build
+%vdr_plugin_build VDRINCDIR=%{_includedir}
 
 %install
 rm -rf %{buildroot}
