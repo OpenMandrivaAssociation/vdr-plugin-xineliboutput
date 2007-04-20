@@ -196,7 +196,8 @@ param=--audio=AUDIO
 # Video driver
 # Supported values:
 # for sxfe: auto, x11, xshm, xv, xvmc, xxmc, vidix, sdl, opengl, none
-# for fbfe: auto, fb, DirectFB, vidixfb, sdl, dxr3, aadxr3, nonevar=VIDEO
+# for fbfe: auto, fb, DirectFB, vidixfb, sdl, dxr3, aadxr3, none
+var=VIDEO
 param=--video=VIDEO
 # Fullscreen mode (X11)
 var=FULLSCREEN
