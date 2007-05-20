@@ -3,8 +3,8 @@
 %define name	vdr-plugin-%plugin
 %define version	1.0.0
 %define snapshot 0
-%define prever	rc1
-%define rel	3
+%define prever	rc2
+%define rel	1
 
 %if %snapshot
 %define release	%mkrel 2.%snapshot.%rel
@@ -282,5 +282,3 @@ rm -rf %{buildroot}
 %defattr(-,root,root)
 %doc README
 %_bindir/vdr-sxfe
-
-
