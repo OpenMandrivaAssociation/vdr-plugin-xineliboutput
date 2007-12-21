@@ -35,6 +35,7 @@ Source:		http://prdownloads.sourceforge.net/xineliboutput/vdr-%plugin-%{version}
 Source:		http://prdownloads.sourceforge.net/xineliboutput/vdr-%plugin-%version.tar.bz2
 %endif
 %endif
+BuildRoot:	%{_tmppath}/%{name}-buildroot
 BuildRequires:	vdr-devel >= 1.4.1-6
 %if %mdkversion >= 200700
 BuildRequires:	libx11-devel
