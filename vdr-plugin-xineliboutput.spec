@@ -4,7 +4,7 @@
 %define version	1.0.0
 %define snapshot 0
 %define prever	rc2
-%define rel	11
+%define rel	12
 
 %if %snapshot
 %define release	%mkrel 2.%snapshot.%rel
@@ -19,7 +19,7 @@
 %define xineplugindir	%(xine-config --plugindir 2>&1)
 # Does not always match rpm version, reports 1.1.9 on 1.1.9.1, so use rpmver directly instead.
 #define xineversion	%(xine-config --version 2>/dev/null || echo 0)
-%define xineversion	%(rpm -q --qf '%%{version}' 2>/dev/null || echo 0)
+%define xineversion	%(rpm -qf --qf '%%{version}' %{_bindir}/xine-config 2>/dev/null || echo 0)
 
 Summary:	VDR plugin: X11/xine-lib output plugin
 Name:		%name
