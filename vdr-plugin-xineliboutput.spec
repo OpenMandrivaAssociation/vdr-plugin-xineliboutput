@@ -2,12 +2,12 @@
 %define plugin	xineliboutput
 %define name	vdr-plugin-%plugin
 %define version	1.0.0
-%define snapshot 0
+%define snapshot 20080125
 %define prever	rc2
-%define rel	12
+%define rel	1
 
 %if %snapshot
-%define release	%mkrel 2.%snapshot.%rel
+%define release	%mkrel 3.%prever.%snapshot.%rel
 %else
 %if %prever
 %define release %mkrel 3.%prever.%rel
