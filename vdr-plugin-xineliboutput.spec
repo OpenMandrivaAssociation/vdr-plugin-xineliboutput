@@ -4,7 +4,7 @@
 %define version	1.0.0
 %define snapshot 20080125
 %define prever	rc2
-%define rel	2
+%define rel	3
 
 %if %snapshot
 %define release	%mkrel 3.%prever.%snapshot.%rel
