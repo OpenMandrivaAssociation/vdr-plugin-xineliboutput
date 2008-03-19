@@ -4,7 +4,7 @@
 %define version	1.0.0
 %define snapshot 20080125
 %define prever	rc2
-%define rel	3
+%define rel	4
 
 %if %snapshot
 %define release	%mkrel 3.%prever.%snapshot.%rel
@@ -20,6 +20,7 @@
 # Does not always match rpm version, reports 1.1.9 on 1.1.9.1, so use rpmver directly instead.
 #define xineversion	%(xine-config --version 2>/dev/null || echo 0)
 %define xineversion	%(rpm -qf --qf '%%{version}' %{_bindir}/xine-config 2>/dev/null || echo 0)
+%define xineapi		%(A=%xineplugindir; echo ${A##*/})
 
 Summary:	VDR plugin: X11/xine-lib output plugin
 Name:		%name
@@ -68,7 +69,11 @@ xineliboutput-local-fbfe.
 %package -n xine-xvdr
 Group:		Video
 Summary:	Xine frontend for the xineliboutput VDR plugin
+%if %{mdkversion} >= 200810
+Requires:	xine-plugin-api >= %xineapi
+%else
 Requires:	xine-plugins = %xineversion
+%endif
 Provides:	vdr-plugin-xineliboutput-frontend-xine
 Obsoletes:	vdr-plugin-xineliboutput-frontend-xine
 Provides:	xineliboutput-fe-xine
@@ -240,7 +245,7 @@ rm -rf %{buildroot}
 
 install -d -m755 %buildroot%xineplugindir/post %buildroot%_bindir
 
-%makeinstall BINDIR=%buildroot%_bindir XINEPLUGINDIR=%buildroot%xineplugindir
+%makeinstall BINDIR=%buildroot%_bindir XINEPLUGINDIR=%buildroot%xineplugindir LOCALEDIR=locale
 
 install -m755 libxineliboutput-*.so.* %{buildroot}%{_vdr_plugin_dir}
 
@@ -260,6 +265,9 @@ rm -rf %{buildroot}
 %files -n xine-xvdr
 %defattr(-,root,root)
 %doc README
+# xine-plugins maybe upgraded without new xine-xvdr (while everything still
+# works). Therefore we have to include the plugindir as well.
+%dir %{xineplugindir}
 %{xineplugindir}/*.so
 %{xineplugindir}/post/*.so
 
