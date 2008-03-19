@@ -16,7 +16,7 @@
 %endif
 %endif
 
-%define xineplugindir	%(xine-config --plugindir 2>/dev/null || echo 0)
+%define xineplugindir	%(xine-config --plugindir 2>/dev/null || echo 0)
 # Does not always match rpm version, reports 1.1.9 on 1.1.9.1, so use rpmver directly instead.
 #define xineversion	%(xine-config --version 2>/dev/null || echo 0)
 %define xineversion	%(rpm -qf --qf '%%{version}' %{_bindir}/xine-config 2>/dev/null || echo 0)
