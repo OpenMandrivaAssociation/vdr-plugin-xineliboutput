@@ -2,9 +2,9 @@
 %define plugin	xineliboutput
 %define name	vdr-plugin-%plugin
 %define version	1.0.0
-%define snapshot 20080125
-%define prever	rc2
-%define rel	4
+%define snapshot 0
+%define prever	0
+%define rel	5
 
 %if %snapshot
 %define release	%mkrel 3.%prever.%snapshot.%rel
@@ -35,19 +35,18 @@ Source:		vdr-%plugin-%snapshot.tar.bz2
 %if %prever
 Source:		http://prdownloads.sourceforge.net/xineliboutput/vdr-%plugin-%{version}%{prever}.tar.bz2
 %else
-Source:		http://prdownloads.sourceforge.net/xineliboutput/vdr-%plugin-%version.tar.bz2
+Source:		http://prdownloads.sourceforge.net/xineliboutput/vdr-%plugin-%version.tgz
 %endif
 %endif
 BuildRoot:	%{_tmppath}/%{name}-buildroot
 BuildRequires:	vdr-devel >= 1.4.1-6
-%if %mdkversion >= 200700
 BuildRequires:	libx11-devel
 BuildRequires:	libxv-devel
-%else
-BuildRequires:	X11-devel
-%endif
 BuildRequires:	libxine-devel
 BuildRequires:	jpeg-devel
+BuildRequires:	libextractor-devel
+BuildRequires:	libxrender-devel
+BuildRequires:	x11-proto-devel
 Requires:	vdr-abi = %vdr_abi
 
 %description
@@ -209,6 +208,9 @@ param=--video=VIDEO
 # Fullscreen mode (X11)
 var=FULLSCREEN
 param=--fullscreen
+# Head Up Display OSD (X11)
+var=HUD
+param=-D
 # Window width
 var=WIDTH
 param=--width=WIDTH
