@@ -4,13 +4,13 @@
 %define version	1.0.0
 %define snapshot 0
 %define prever	0
-%define rel	5
+%define rel	6
 
 %if %snapshot
-%define release	%mkrel 3.%prever.%snapshot.%rel
+%define release	%mkrel 0.%prever.%snapshot.%rel
 %else
 %if %prever
-%define release %mkrel 3.%prever.%rel
+%define release %mkrel 0.%prever.%rel
 %else
 %define release %mkrel %rel
 %endif
@@ -68,8 +68,9 @@ xineliboutput-local-fbfe.
 %package -n xine-xvdr
 Group:		Video
 Summary:	Xine frontend for the xineliboutput VDR plugin
-%if %{mdkversion} >= 200810
+%if %{mdkversion} >= 200800
 Requires:	xine-plugin-api >= %xineapi
+BuildRequires:	libxine-devel >= 1.1.11-2
 %else
 Requires:	xine-plugins = %xineversion
 %endif
