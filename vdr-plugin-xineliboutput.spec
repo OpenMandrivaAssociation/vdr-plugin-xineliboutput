@@ -4,7 +4,7 @@
 %define version	1.0.0
 %define snapshot 0
 %define prever	0
-%define rel	6
+%define rel	7
 
 %if %snapshot
 %define release	%mkrel 0.%prever.%snapshot.%rel
@@ -39,7 +39,7 @@ Source:		http://prdownloads.sourceforge.net/xineliboutput/vdr-%plugin-%version.t
 %endif
 %endif
 BuildRoot:	%{_tmppath}/%{name}-buildroot
-BuildRequires:	vdr-devel >= 1.4.1-6
+BuildRequires:	vdr-devel >= 1.6.0
 BuildRequires:	libx11-devel
 BuildRequires:	libxv-devel
 BuildRequires:	libxine-devel
@@ -180,6 +180,7 @@ xineliboutput-local-fbfe.
 %setup -q -n %plugin-%version
 %endif
 %endif
+%vdr_plugin_prep
 
 find -name CVS -type d | while read i; do rm -r "$i" || exit 1; done
 perl -pi -e 's,X11R6/lib,X11R6/%{_lib},' Makefile
@@ -248,7 +249,7 @@ rm -rf %{buildroot}
 
 install -d -m755 %buildroot%xineplugindir/post %buildroot%_bindir
 
-%makeinstall BINDIR=%buildroot%_bindir XINEPLUGINDIR=%buildroot%xineplugindir LOCALEDIR=locale
+%makeinstall BINDIR=%buildroot%_bindir XINEPLUGINDIR=%buildroot%xineplugindir
 
 install -m755 libxineliboutput-*.so.* %{buildroot}%{_vdr_plugin_dir}
 
