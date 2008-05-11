@@ -2,7 +2,7 @@
 %define plugin	xineliboutput
 %define name	vdr-plugin-%plugin
 %define version	1.0.1
-%define snapshot 20080507
+%define snapshot 0
 %define prever	0
 %define rel	1
 
@@ -31,7 +31,7 @@ Name:		%name
 Version:	%version
 Release:	%release
 Group:		Video
-License:	GPL
+License:	GPLv2+
 URL:		http://sourceforge.net/projects/xineliboutput/
 %if %snapshot
 Source:		vdr-%plugin-%snapshot.tar.bz2
@@ -39,7 +39,7 @@ Source:		vdr-%plugin-%snapshot.tar.bz2
 %if %prever
 Source:		http://prdownloads.sourceforge.net/xineliboutput/vdr-%plugin-%{version}%{prever}.tar.bz2
 %else
-Source:		http://prdownloads.sourceforge.net/xineliboutput/vdr-%plugin-%version.tgz
+Source:		http://prdownloads.sourceforge.net/xineliboutput/vdr-%plugin-%version.tar.bz2
 %endif
 %endif
 BuildRoot:	%{_tmppath}/%{name}-buildroot
