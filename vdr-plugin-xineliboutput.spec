@@ -1,10 +1,10 @@
 
 %define plugin	xineliboutput
 %define name	vdr-plugin-%plugin
-%define version	1.0.3
+%define version	1.0.4
 %define snapshot 0
 %define prever	0
-%define rel	3
+%define rel	1
 
 %if %snapshot
 %if %prever
@@ -42,7 +42,6 @@ Source:		http://prdownloads.sourceforge.net/xineliboutput/vdr-%plugin-%{version}
 Source:		http://prdownloads.sourceforge.net/xineliboutput/vdr-%plugin-%version.tar.bz2
 %endif
 %endif
-Patch0:		xineliboutput-1.0.3-underlinking.patch
 BuildRoot:	%{_tmppath}/%{name}-buildroot
 BuildRequires:	vdr-devel >= 1.6.0
 BuildRequires:	libx11-devel
@@ -185,7 +184,6 @@ xineliboutput-local-fbfe.
 %setup -q -n %plugin-%version
 %endif
 %endif
-%patch0 -p1
 %vdr_plugin_prep
 
 find -name CVS -type d | while read i; do rm -r "$i" || exit 1; done
