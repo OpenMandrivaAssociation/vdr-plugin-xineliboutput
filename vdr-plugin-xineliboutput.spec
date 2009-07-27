@@ -42,6 +42,7 @@ Source:		http://prdownloads.sourceforge.net/xineliboutput/vdr-%plugin-%{version}
 Source:		http://prdownloads.sourceforge.net/xineliboutput/vdr-%plugin-%version.tar.bz2
 %endif
 %endif
+Patch0:		xineliboutput-const-char-gcc4.4.patch
 BuildRoot:	%{_tmppath}/%{name}-buildroot
 BuildRequires:	vdr-devel >= 1.6.0
 BuildRequires:	libx11-devel
@@ -184,6 +185,7 @@ xineliboutput-local-fbfe.
 %setup -q -n %plugin-%version
 %endif
 %endif
+%patch0 -p1
 %vdr_plugin_prep
 
 find -name CVS -type d | while read i; do rm -r "$i" || exit 1; done
@@ -253,7 +255,7 @@ rm -rf %{buildroot}
 
 install -d -m755 %buildroot%xineplugindir/post %buildroot%_bindir
 
-%makeinstall BINDIR=%buildroot%_bindir XINEPLUGINDIR=%buildroot%xineplugindir
+%makeinstall BINDIR=%buildroot%_bindir XINEPLUGINDIR=%buildroot%xineplugindir VDRDIR=.
 
 install -m755 libxineliboutput-*.so.* %{buildroot}%{_vdr_plugin_dir}
 
