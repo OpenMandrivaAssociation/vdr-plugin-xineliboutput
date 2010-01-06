@@ -1,10 +1,11 @@
 
 %define plugin	xineliboutput
 %define name	vdr-plugin-%plugin
-%define version	1.0.4
+# manually created tarball from CVS tag
+%define version	1.0.5
 %define snapshot 0
 %define prever	0
-%define rel	4
+%define rel	1
 
 %if %snapshot
 %if %prever
@@ -42,7 +43,6 @@ Source:		http://prdownloads.sourceforge.net/xineliboutput/vdr-%plugin-%{version}
 Source:		http://prdownloads.sourceforge.net/xineliboutput/vdr-%plugin-%version.tar.bz2
 %endif
 %endif
-Patch0:		xineliboutput-const-char-gcc4.4.patch
 BuildRoot:	%{_tmppath}/%{name}-buildroot
 BuildRequires:	vdr-devel >= 1.6.0
 BuildRequires:	libx11-devel
@@ -51,7 +51,8 @@ BuildRequires:	libxine-devel
 BuildRequires:	jpeg-devel
 BuildRequires:	libextractor-devel
 BuildRequires:	libxrender-devel
-BuildRequires:	x11-proto-devel
+BuildRequires:	libxinerama-devel
+BuildRequires:	dbus-glib-devel
 Requires:	vdr-abi = %vdr_abi
 
 %description
@@ -185,7 +186,6 @@ xineliboutput-local-fbfe.
 %setup -q -n %plugin-%version
 %endif
 %endif
-%patch0 -p1
 %vdr_plugin_prep
 
 find -name CVS -type d | while read i; do rm -r "$i" || exit 1; done
@@ -204,12 +204,12 @@ param=--local=LOCAL
 var=REMOTE_PORT
 param=--remote=REMOTE_PORT
 # Audio driver
-# Supported values: auto, alsa, oss, arts, esound, none
+# Supported values: auto, alsa, oss, esound, none
 var=AUDIO
 param=--audio=AUDIO
 # Video driver
 # Supported values:
-# for sxfe: auto, x11, xshm, xv, xvmc, xxmc, vidix, sdl, opengl, none
+# for sxfe: auto, x11, xshm, xv, xvmc, xxmc, vdpau, vidix, sdl, opengl, none
 # for fbfe: auto, fb, DirectFB, vidixfb, sdl, dxr3, aadxr3, none
 var=VIDEO
 param=--video=VIDEO
@@ -241,6 +241,9 @@ param=--primary
 # to define VDR_MAX_RESTART=0 in /etc/sysconfig/vdr.
 var=EXIT_ON_CLOSE
 param=--exit-on-close
+# Use custom xine-lib config file
+var=XINE_LIB_CONFIG
+param="-C XINE_LIB_CONFIG"
 %vdr_plugin_params_end
 
 mkdir xine-plugins
