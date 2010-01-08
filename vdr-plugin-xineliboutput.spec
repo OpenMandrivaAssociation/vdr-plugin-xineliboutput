@@ -5,7 +5,10 @@
 %define version	1.0.5
 %define snapshot 0
 %define prever	0
-%define rel	1
+%define rel	2
+# Please update xine-xvdr as well.
+# It uses the same tarball but builds xine1.2-xvdr subpackage
+# equivalent for stable xine.
 
 %if %snapshot
 %if %prever
@@ -47,7 +50,7 @@ BuildRoot:	%{_tmppath}/%{name}-buildroot
 BuildRequires:	vdr-devel >= 1.6.0
 BuildRequires:	libx11-devel
 BuildRequires:	libxv-devel
-BuildRequires:	libxine-devel
+BuildRequires:	xine1.2-devel
 BuildRequires:	jpeg-devel
 BuildRequires:	libextractor-devel
 BuildRequires:	libxrender-devel
@@ -66,39 +69,40 @@ transfer the data to the standalone clients.
 Built-in image and media player supports playback of most known
 media files and network radio/video streams directly from VDR.
 
-Xine frontend is in package xine-xvdr. Standalone frontends are in
-packages xineliboutput-sxfe and xineliboutput-fbfe. Local frontends
-are in packages xineliboutput-local-sxfe and
-xineliboutput-local-fbfe.
+Frontend packages:
+- xine-xvdr: Xine frontend
+- xine1.2-xvdr: Xine1.2 frontend
+- xineliboutput-sxfe: Standalone X11 frontend
+- xineliboutput-fbfe: Standalone FB frontend
+- xineliboutput-local-sxfe: Local X11 frontend
+- xineliboutput-local-fbfe: Local FB frontend
 
-%package -n xine-xvdr
+%package -n xine1.2-xvdr
 Group:		Video
 Summary:	Xine frontend for the xineliboutput VDR plugin
-%if %{mdkversion} >= 200800
-Requires:	xine-plugin-api >= %xineapi
-BuildRequires:	libxine-devel >= 1.1.11-2
-%else
-Requires:	xine-plugins = %xineversion
-%endif
+Requires:	%{_lib}xine2-plugin-api >= %xineapi
 Provides:	vdr-plugin-xineliboutput-frontend-xine
 Obsoletes:	vdr-plugin-xineliboutput-frontend-xine
 Provides:	xineliboutput-fe-xine
 Obsoletes:	xineliboutput-fe-xine
 
-%description -n xine-xvdr
-With this package you can connect to your VDR with xine with an MRL
+%description -n xine1.2-xvdr
+With this package you can connect to your VDR with xine1.2 with an MRL
 like below:
 xvdr://127.0.0.1#nocache;demux:mpeg_block
 
-Xine frontend is in package xine-xvdr. Standalone frontends are in
-packages xineliboutput-sxfe and xineliboutput-fbfe. Local frontends
-are in packages xineliboutput-local-sxfe and
-xineliboutput-local-fbfe.
+Frontend packages:
+- xine-xvdr: Xine frontend
+- xine1.2-xvdr: Xine1.2 frontend
+- xineliboutput-sxfe: Standalone X11 frontend
+- xineliboutput-fbfe: Standalone FB frontend
+- xineliboutput-local-sxfe: Local X11 frontend
+- xineliboutput-local-fbfe: Local FB frontend
 
 %package -n %plugin-local-sxfe
 Group:		Video
 Summary:	Local X11 frontend for the xineliboutput VDR plugin
-Requires:	xine-xvdr = %version
+Requires:	xine1.2-xvdr = %version
 Requires:	%name = %version
 Provides:	vdr-plugin-xineliboutput-frontend-local-x11
 Obsoletes:	vdr-plugin-xineliboutput-frontend-local-x11
@@ -110,15 +114,18 @@ Obsoletes:	xineliboutput-fe-x11
 %description -n %plugin-local-sxfe
 Local X11 frontend for the xineliboutput VDR plugin.
 
-Xine frontend is in package xine-xvdr. Standalone frontends are in
-packages xineliboutput-sxfe and xineliboutput-fbfe. Local frontends
-are in packages xineliboutput-local-sxfe and
-xineliboutput-local-fbfe.
+Frontend packages:
+- xine-xvdr: Xine frontend
+- xine1.2-xvdr: Xine1.2 frontend
+- xineliboutput-sxfe: Standalone X11 frontend
+- xineliboutput-fbfe: Standalone FB frontend
+- xineliboutput-local-sxfe: Local X11 frontend
+- xineliboutput-local-fbfe: Local FB frontend
 
 %package -n %plugin-local-fbfe
 Group:		Video
 Summary:	Local framebuffer/DirectFB frontend for the xineliboutput VDR plugin
-Requires:	xine-xvdr = %version
+Requires:	xine1.2-xvdr = %version
 Requires:	%name = %version
 Provides:       vdr-plugin-xineliboutput-frontend-local-fb
 Obsoletes:      vdr-plugin-xineliboutput-frontend-local-fb
@@ -131,16 +138,18 @@ Obsoletes:	xineliboutput-fe-fb
 Local framebuffer/DirectFB frontend for the xineliboutput VDR
 plugin.
 
-Xine frontend is in package xine-xvdr. Standalone frontends are in
-packages xineliboutput-sxfe and xineliboutput-fbfe. Local frontends
-are in packages xineliboutput-local-sxfe and
-xineliboutput-local-fbfe.
-
+Frontend packages:
+- xine-xvdr: Xine frontend
+- xine1.2-xvdr: Xine1.2 frontend
+- xineliboutput-sxfe: Standalone X11 frontend
+- xineliboutput-fbfe: Standalone FB frontend
+- xineliboutput-local-sxfe: Local X11 frontend
+- xineliboutput-local-fbfe: Local FB frontend
 
 %package -n %plugin-sxfe
 Group:		Video
 Summary:	Standalone X11 frontend for the xineliboutput VDR plugin
-Requires:	xine-xvdr = %version
+Requires:	xine1.2-xvdr = %version
 Provides:       vdr-plugin-xineliboutput-frontend-standalone-x11
 Obsoletes:      vdr-plugin-xineliboutput-frontend-standalone-x11
 Provides:	xineliboutput-fe-standalone-x11
@@ -151,15 +160,18 @@ Obsoletes:	xineliboutput-fe-x11
 %description -n %plugin-sxfe
 Standalone X11 frontend for the xineliboutput VDR plugin.
 
-Xine frontend is in package xine-xvdr. Standalone frontends are in
-packages xineliboutput-sxfe and xineliboutput-fbfe. Local frontends
-are in packages xineliboutput-local-sxfe and
-xineliboutput-local-fbfe.
+Frontend packages:
+- xine-xvdr: Xine frontend
+- xine1.2-xvdr: Xine1.2 frontend
+- xineliboutput-sxfe: Standalone X11 frontend
+- xineliboutput-fbfe: Standalone FB frontend
+- xineliboutput-local-sxfe: Local X11 frontend
+- xineliboutput-local-fbfe: Local FB frontend
 
 %package -n %plugin-fbfe
 Group:		Video
 Summary:	Standalone framebuffer/DirectFB frontend for the xineliboutput VDR plugin
-Requires:	xine-xvdr = %version
+Requires:	xine1.2-xvdr = %version
 Provides:       vdr-plugin-xineliboutput-frontend-standalone-fb
 Obsoletes:      vdr-plugin-xineliboutput-frontend-standalone-fb
 Provides:	xineliboutput-fe-standalone-fb
@@ -171,10 +183,13 @@ Obsoletes:	xineliboutput-fe-fb
 Standalone framebuffer/DirectFB frontend for the xineliboutput VDR
 plugin.
 
-Xine frontend is in package xine-xvdr. Standalone frontends are in
-packages xineliboutput-sxfe and xineliboutput-fbfe. Local frontends
-are in packages xineliboutput-local-sxfe and
-xineliboutput-local-fbfe.
+Frontend packages:
+- xine-xvdr: Xine frontend
+- xine1.2-xvdr: Xine1.2 frontend
+- xineliboutput-sxfe: Standalone X11 frontend
+- xineliboutput-fbfe: Standalone FB frontend
+- xineliboutput-local-sxfe: Local X11 frontend
+- xineliboutput-local-fbfe: Local FB frontend
 
 %prep
 %if %snapshot
@@ -275,7 +290,7 @@ rm -rf %{buildroot}
 %defattr(-,root,root)
 %doc README HISTORY examples
 
-%files -n xine-xvdr
+%files -n xine1.2-xvdr
 %defattr(-,root,root)
 %doc README
 # xine-plugins maybe upgraded without new xine-xvdr (while everything still
