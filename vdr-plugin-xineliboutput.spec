@@ -46,6 +46,11 @@ Source:		http://prdownloads.sourceforge.net/xineliboutput/vdr-%plugin-%{version}
 Source:		http://prdownloads.sourceforge.net/xineliboutput/vdr-%plugin-%version.tar.bz2
 %endif
 %endif
+# fix build with libextractor 0.6+, from upstream:
+Patch0:		xineliboutput-extractor-metainfo-menu1.patch
+Patch1:		xineliboutput-extractor-metainfo-menu2.patch
+Patch2:		xineliboutput-extractor-playlist.patch
+Patch3:		xineliboutput-extractor-playlist2.patch
 BuildRoot:	%{_tmppath}/%{name}-buildroot
 BuildRequires:	vdr-devel >= 1.6.0
 BuildRequires:	libx11-devel
@@ -201,6 +206,7 @@ Frontend packages:
 %setup -q -n %plugin-%version
 %endif
 %endif
+%apply_patches
 %vdr_plugin_prep
 
 find -name CVS -type d | while read i; do rm -r "$i" || exit 1; done
