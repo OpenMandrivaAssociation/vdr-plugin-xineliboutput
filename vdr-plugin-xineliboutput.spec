@@ -5,7 +5,7 @@
 %define version	1.0.5
 %define snapshot 0
 %define prever	0
-%define rel	3
+%define rel	4
 # Please update xine-xvdr as well.
 # It uses the same tarball but builds xine1.2-xvdr subpackage
 # equivalent for stable xine.
