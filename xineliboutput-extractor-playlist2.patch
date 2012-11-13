@@ -1,0 +1,14 @@
+diff -Nurpa -x '*~' -x '*.orig' -x '*.rej' -x '*.swp' xineliboutput-1.0.5//tools/playlist.h newdir/tools/playlist.h
+--- xineliboutput-1.0.5//tools/playlist.h	2008-02-19 06:24:34.000000000 +0200
++++ xineliboutput-1.0.5/tools/playlist.h	2010-05-21 19:21:03.273647900 +0300
+@@ -124,7 +124,10 @@ class cPlaylist : protected cList<cPlayl
+   cPlaylistItem *Next(void);
+   cPlaylistItem *Prev(void);
+ 
++  static cString BuildMrl(const char *proto, const char *s1,
++                          const char *s2 = NULL, const char *s3 = NULL, const char *s4 = NULL);
+   static cString EscapeMrl(const char *name);
++
+   static cString GetEntry(cPlaylistItem *i, bool isPlaylist = false, bool isCurrent = false);
+ };
+ 
