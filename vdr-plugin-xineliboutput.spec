@@ -206,7 +206,7 @@ Frontend packages:
 %setup -q -n %plugin-%version
 %endif
 %endif
-%apply_patches
+%autopatch -p1
 %vdr_plugin_prep
 
 find -name CVS -type d | while read i; do rm -r "$i" || exit 1; done
